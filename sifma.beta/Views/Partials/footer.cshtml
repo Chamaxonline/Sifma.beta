@@ -7,18 +7,101 @@
 
 <!-- Footer-->
 <footer>
-    <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                @if (homePage.SocialIconLinks != null && homePage.SocialIconLinks.Any())
-                {
-                    <ul class="list-inline text-center">
-                        @Html.GetBlockListHtml(homePage.SocialIconLinks)
-                    </ul>
-                }
-                <p class="small text-center text-muted fst-italic">@Umbraco.GetDictionaryValue("Footer.CopyrightTitle") &copy; @DateTime.Now.Year @Umbraco.GetDictionaryValue("Footer.CopyrightStatement")</p>
-                <p class="small text-center text-muted fst-italic">Theme by <a href="https://startbootstrap.com/" target="_blank" rel="noopener">Start Bootstrap</a>, implemented in Umbraco by Paul Seal from <a href="https://codeshare.co.uk" target="_blank" rel="noopener">codeshare.co.uk</a></p>
-            </div>
-        </div>
-    </div>
+<div id="footer-area"> <div class="newsletter-section"> 
+<div class="container"> 
+<div class="newsletter-module676bb18510a65 newsletter-module"> 
+<form id="form-newsletter676bb18510a65"> <div class="flex flex-wrap align-center"> 
+<div class="text-title item"> <div class="title">Subscribe to our</div> 
+<div class="description">FM Practitioners Registry</div> </div> 
+<div class="subscribe-content item"> <div class="flex input-wrap"> 
+<div class="flex-1"><input type="email" id="newsletter-input-email676bb18510a65" name="email" value="" class="form-control w100" placeholder="Enter email address"></div> 
+<div class="text-center text-sm-right"><button type="button" id="submit-newsletter676bb18510a65" data-loading-text="Loading..." class="btn btn-primary">SUBSCRIBE NOW</button></div> </div> </div> </div> </form> </div> </div> <script type="text/javascript">
+$(document).on('click', '#submit-newsletter676bb18510a65', function(){
+	$.ajax({
+		url: 'index.php?route=extension/module/newsletter_module/validate',
+		type: 'post',
+		data: $('#form-newsletter676bb18510a65').serialize(),
+		dataType: 'json',
+		beforeSend: function () {
+			$('#submit-newsletter676bb18510a65').button('loading');
+		},
+		complete: function () {
+			$('#submit-newsletter676bb18510a65').button('reset');
+		},
+		success: function (json) {
+			$('.newsletter-module676bb18510a65 .text-danger').remove();
+
+			if (json['error']) {
+				for (i in json['error']) {
+					//var element = $('#newsletter-input-676bb18510a65' + i);
+					//element.after('<div class="text-danger">' + json['error'][i] + '</div>');
+
+                    swal({
+						title: 'There is something wrong',
+						html: json['error'][i],
+						type: "error"
+					});
+				}
+			}
+
+			if (json['success']) {
+                swal({
+                    title: 'Thank you!',
+                    html: json['success'],
+                    type: "success"
+                });
+			}
+		},
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+</script> </div> <footer> 
+<link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"> 
+<link href="/node_modules/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<link href="/css/stylesheet/stylesheet.css" rel="stylesheet"> 
+<link href="/css/stylesheet/combined.min.css" rel="stylesheet"> 
+
+<link href="/css/stylesheet/sass/helper.min.css" rel="stylesheet"> 
+<link href="/css/stylesheet/sass/custom.min.css" rel="stylesheet"> 
+<link href="/css/stylesheet/pagination-breadcrumb.css" rel="stylesheet"> 
+<link href="/javascript/jquery/owl-carousel/owl.carousel.min.css" type="text/css" rel="stylesheet" media="screen"> 
+<link href="javascript/slick/slick.min.css" type="text/css" rel="stylesheet" media="screen"> 
+<script src="/node_modules/jquery/dist/jquery.min.js"></script>
+<script defer="defer" src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.3.0/dist/lazyload.min.js"></script> 
+<script>
+	$(window).load(function() {
+		var lazyLoadInstance = new LazyLoad({
+		// Your custom settings go here
+		});
+	});
+	</script> 
+    <div class="container"> 
+    <div class="footer-upper-contet"> 
+    <div class="footer-contact-info"> 
+    <div class="footer-logo">
+    <img src="/media/SIFMA logo_png_.png" title="SIFMA" alt="SIFMA" class="img-responsive"></div> 
+    <div class="footer-text">Singapore International Facility Management Association</div> 
+    </div> <div class="footer-contact-links"> <h5>
+												Quicklinks											</h5> <ul class="list-unstyled"> <li><a href="https://www.sifma.org.sg/">
+								Home</a></li> <li><a href="https://www.sifma.org.sg/overview">
+								About Us</a></li> <li><a href="https://www.sifma.org.sg/accreditation">
+								Accreditation</a></li> <li><a href="https://www.sifma.org.sg/partners-and-member-directory">
+								Membership</a></li> <li><a href="https://www.sifma.org.sg/index.php?route=information/ecategory">
+								Events</a></li> <li><a href="https://www.sifma.org.sg/announcement">
+								Announcement</a></li> <li><a href="https://www.sifma.org.sg/what-is-facility-management">
+								Knowledge</a></li> <li><a href="https://www.sifma.org.sg/courses">
+								Professional Development</a></li> <li><a href="https://www.sifma.org.sg/contact-us">
+								Contact Us</a></li> <li><a href="https://www.sifma.org.sg/tender">
+								Tender</a></li> <li><a href="https://www.sifma.org.sg/faqs">
+								FAQs</a></li> <li><a href="https://www.sifma.org.sg/terms">
+								T&amp;Cs</a></li> <li><a href="https://www.sifma.org.sg/privacy">
+								PDPA</a></li> </ul> </div> <div class="footer-contact-links"> <h5>Social Media</h5> 
+                                <div class="footer-social-icons"> 
+                                <a href="https://www.linkedin.com/company/ifma-singapore-chapter/about/" class="item flex" title="LinkedIn" alt="LinkedIn" target="_blank"> 
+                                <div class="icon"><img data-src="/media/LinkedIn _Navy_Blue_.jpg" title="LinkedIn" class="img-responsive lazy entered loaded" alt="LinkedIn" data-ll-status="loaded" src="/media/LinkedIn _Navy_Blue_.jpg"></div> 
+                                <div class="title">LinkedIn</div> </a> </div> </div> </div> <div class="footer-bottom flex flex-space-btw flex-wrap">
+                                 <div>© 2024 SIFMA. All Rights Reserved.</div> 
+                                 <div><span class="fcs"><a href="https://www.firstcom.com.sg/services/ecommerce" target="_blank">Web Design</a> by <a href="https://www.firstcom.com.sg" target="_blank">Firstcom Solutions</a></span></div> </div> </div> </footer> </div>
 </footer>
